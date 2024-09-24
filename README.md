@@ -118,3 +118,5 @@ Apache Commons Components
 -------------------------
 
 Please see the [list of components](https://commons.apache.org/components.html)
+
+https://www.tutorialspoint.com/commons_collections/commons_collections_useful_resources.htm
