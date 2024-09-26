@@ -44,6 +44,7 @@ import java.util.Set;
  * @param <E> the type of elements in this bag
  * @since 2.0
  */
+// Bag定义了一个集合，该集合可以添加重复元素，并且可以统计元素出现的次数。
 public interface Bag<E> extends Collection<E> {
 
     /**
@@ -64,6 +65,9 @@ public interface Bag<E> extends Collection<E> {
      * @param object  the object to add
      * @return {@code true} if the object was not already in the {@code uniqueSet}
      */
+    // 违规 会返回false
+    // 将指定对象的一份副本添加到Bag中
+    // @return 如果对象已存在于uniqueSet()中，则返回false，否则返回true。
     @Override
     boolean add(E object);
 
@@ -79,6 +83,11 @@ public interface Bag<E> extends Collection<E> {
      * @param nCopies  the number of copies to add
      * @return {@code true} if the object was not already in the {@code uniqueSet}
      */
+    // 违规 会返回false
+    // 该函数将指定对象的nCopies个副本添加到Bag中。
+    // 若对象已存在于uniqueSet()中，则增加其计数。
+    // 否则将其添加到uniqueSet()中，并将其计数设为nCopies。
+    // 返回值表示对象是否为新添加至uniqueSet()。
     boolean add(E object, int nCopies);
 
     /**
@@ -99,6 +108,10 @@ public interface Bag<E> extends Collection<E> {
      * @param coll  the collection to check against
      * @return {@code true} if the Bag contains all the collection
      */
+    // 违规 这里的违规是值该方法的行为与Collection接口中定义的containsAll方法不同
+    //     具体来说Collection#containsAll方法不考虑元素数量，而该方法考虑了元素数量。
+    // 检查当前Bag是否包含给定集合coll中的所有元素，并考虑元素的数量。
+    // 对于coll中的每个对象，Bag中必须至少包含相同数量的对象。
     @Override
     boolean containsAll(Collection<?> coll);
 
@@ -110,6 +123,7 @@ public interface Bag<E> extends Collection<E> {
      * @param object  the object to search for
      * @return the number of occurrences of the object, zero if not found
      */
+    // 返回给定对象在Bag中的出现次数（数量）。 如果对象不在Bag中，则返回0。
     int getCount(Object object);
 
     /**
@@ -137,6 +151,8 @@ public interface Bag<E> extends Collection<E> {
      * @param object  the object to remove
      * @return {@code true} if this call changed the collection
      */
+    // 违规
+    // 从Bag中删除所有出现的指定对象。
     @Override
     boolean remove(Object object);
 
@@ -151,6 +167,7 @@ public interface Bag<E> extends Collection<E> {
      * @param nCopies  the number of copies to remove
      * @return {@code true} if this call changed the collection
      */
+    // 从Bag中移除指定对象的nCopies个副本。
     boolean remove(Object object, int nCopies);
 
     /**
@@ -171,6 +188,8 @@ public interface Bag<E> extends Collection<E> {
      * @param coll  the collection to remove
      * @return {@code true} if this call changed the collection
      */
+    // 违规
+    // 删除给定集合中表示的所有元素，(尊重基数)考虑元素数量。
     @Override
     boolean removeAll(Collection<?> coll);
 
@@ -195,6 +214,11 @@ public interface Bag<E> extends Collection<E> {
      * @param coll  the collection to retain
      * @return {@code true} if this call changed the collection
      */
+    // 违规
+    // 保留给定集合中的所有元素，并考虑元素的数量。
+    // 具体行为：
+    //      1、如果给定集合coll包含某对象，且该对象在bag中数量大于coll中数量，则删除bag中该对象数量减去coll中数量。
+    //      2、如果bag中有对象，而coll中没有，则删除该对象。
     @Override
     boolean retainAll(Collection<?> coll);
 
@@ -203,6 +227,7 @@ public interface Bag<E> extends Collection<E> {
      *
      * @return the total size of the Bag
      */
+    // 返回Bag中所有类型的元素的总数。
     @Override
     int size();
 
@@ -214,6 +239,7 @@ public interface Bag<E> extends Collection<E> {
      *
      * @return the Set of unique Bag elements
      */
+    // 返回Bag中的一组唯一元素
     Set<E> uniqueSet();
 
     // The following is not part of the formal Bag interface, however where possible

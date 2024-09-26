@@ -120,3 +120,5 @@ Apache Commons Components
 Please see the [list of components](https://commons.apache.org/components.html)
 
 https://www.tutorialspoint.com/commons_collections/commons_collections_useful_resources.htm
+
+https://www.w3ccoo.com/apache_commons_collections/apache_commons_collections_bag.asp
